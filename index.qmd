@@ -1,0 +1,125 @@
+--- 
+title: "My Quarto Dashboards demo"
+format:
+    dashboard:
+        theme: yeti
+        orientation: rows
+        website:
+        nav-buttons:
+        - icon: github
+          href: https://github.com/Myxogastria0808/quarto_dashboards_demo
+--- 
+
+```{r}
+library(DT)
+library(ggplot2)
+library(ggsci)
+
+sepal_length <- data.frame(
+    species = iris$Species,
+    sepal_length = iris$Sepal.Length
+)
+sepal_width <- data.frame(
+    species = iris$Species,
+    sepal_width = iris$Sepal.Width
+)
+petal_length <- data.frame(
+    species = iris$Species,
+    petal_length = iris$Petal.Length
+)
+petal_width <- data.frame(
+    species = iris$Species,
+    petal_width = iris$Petal.Width
+)
+```
+
+# iris1
+
+## Row {width=40%}
+
+```{r}
+#| title: データ
+datatable(iris)
+```
+
+## Row {width=60%}
+
+### Column {.tabset}
+
+```{r}
+#| title: 散布図１
+
+sepal_scatter_plot <- ggplot(iris, aes(x = iris$Sepal.Length, y = iris$Sepal.Width, color = Species)) + geom_point() + scale_color_nejm()
+plot(sepal_scatter_plot)
+```
+
+```{r}
+#| title: 散布図２
+
+petal_scatter_plot <- ggplot(iris, aes(x = iris$Petal.Length, y = iris$Petal.Width, color = Species)) + geom_point() + scale_color_nejm()
+plot(petal_scatter_plot)
+```
+
+### Column {.tabset}
+
+```{r}
+#| title: 棒グラフ１
+
+sepal_length_bar <- ggplot(sepal_length, aes(x = species, y = sepal_length, fill = species)) + geom_bar(stat = "identity") + scale_fill_nejm()
+plot(sepal_length_bar)
+```
+
+```{r}
+#| title: 棒グラフ２
+
+sepal_width_bar <- ggplot(sepal_width, aes(x = species, y = sepal_width, fill = species)) + geom_bar(stat = "identity") + scale_fill_nejm()
+plot(sepal_width_bar)
+```
+
+```{r}
+#| title: 棒グラフ３
+
+petal_length_bar <- ggplot(petal_length, aes(x = species, y = petal_length, fill = species)) + geom_bar(stat = "identity") + scale_fill_nejm()
+plot(petal_length_bar)
+```
+
+```{r}
+#| title: 棒グラフ４
+
+sepal_width_bar <- ggplot(sepal_width, aes(x = species, y = sepal_width, fill = species)) + geom_bar(stat = "identity") + scale_fill_nejm()
+plot(sepal_width_bar)
+```
+
+# iris2
+
+## Row
+
+::: {.card}
+
+# My Quarto Dashboards demo
+
+## Quarto
+
+<https://quarto.org/>
+
+## Quarto Dashboards
+
+<https://quarto.org/docs/dashboards/>
+
+:::
+
+## Row
+
+### Column
+
+```{r}
+lm_sepal_scatter_plot <- ggplot(iris, aes(x = iris$Sepal.Length, y = iris$Sepal.Width, color = Species)) + geom_point() + geom_smooth(method = "lm") + scale_color_nejm()
+plot(lm_sepal_scatter_plot)
+```
+
+### Column
+
+```{r}
+lm_petal_scatter_plot <- ggplot(iris, aes(x = iris$Petal.Length, y = iris$Petal.Width, color = Species)) + geom_point() + geom_smooth(method = "lm") + scale_color_nejm()
+plot(lm_petal_scatter_plot)
+```
