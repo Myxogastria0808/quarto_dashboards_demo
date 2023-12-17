@@ -33,7 +33,7 @@ petal_width <- data.frame(
 )
 ```
 
-# iris1
+# Sample 1
 
 ## Row {width=40%}
 
@@ -90,7 +90,7 @@ sepal_width_bar <- ggplot(sepal_width, aes(x = species, y = sepal_width, fill = 
 plot(sepal_width_bar)
 ```
 
-# iris2
+# Sample 2
 
 ## Row
 
